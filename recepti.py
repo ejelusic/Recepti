@@ -3,9 +3,10 @@ from MainWindow import *
 
 ## TATARSKI BIFTEK
 
-kolicina_mesa = 500
-omjer = kolicina_mesa / 600
-tatarski_biftek = """Sastojci
+def izracun_ispis(kolicina_mesa):
+    kolicina_mesa = kolicina_mesa
+    omjer = kolicina_mesa / 600
+    tatarski_biftek = """Sastojci
         *************
         {meso} g juneće pisanice - skosati
     
@@ -47,4 +48,5 @@ tatarski_biftek = """Sastojci
         
         - Smjesu na kraju začinite Tabasco i Worcester umakom te konjakom, dobro promiješajte i ostavite u hladnjaku da se sastojci sjedine.
         """.format(meso = kolicina_mesa, smjesa = int(omjer * 10), zumanjci = int(omjer * 2), senf = int(omjer * 2), limun = int(omjer * 1), ulje = int(omjer * 100), kecap = int(omjer * 2), zacin = int(omjer))
+    return tatarski_biftek
 

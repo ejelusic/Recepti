@@ -58,7 +58,8 @@ def izlaz(self):
 
 # noinspection PyCallByClass
 def ispisi_recept(self):
-    ui.textBrowser.setText(tatarski_biftek)
+    kolicina_mesa=int(ui.lineEdit.text())
+    ui.textBrowser.setText(izracun_ispis(kolicina_mesa))
 
 if __name__ == "__main__":
     import sys
