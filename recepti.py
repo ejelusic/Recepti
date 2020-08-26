@@ -23,7 +23,7 @@ def izracun_tatarski(kolicina_mesa):
      
 [pomješati]
 [Začiniti]
--Sol, Papar, Čili)
+-Sol, Papar, Čili
       
 [dodati u meso i miješati, dodavajući]
 {zacin} žličica Tabasco umaka
