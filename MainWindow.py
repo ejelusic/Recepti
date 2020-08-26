@@ -5,6 +5,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(803, 651)
+        MainWindow.setWindowIcon(QtGui.QIcon('slike\logo.png'))
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.textBrowser = QtWidgets.QTextBrowser(self.centralwidget)
@@ -13,18 +14,21 @@ class Ui_MainWindow(object):
         self.lineEdit = QtWidgets.QLineEdit(self.centralwidget)
         self.lineEdit.setGeometry(QtCore.QRect(270, 20, 113, 24))
         self.lineEdit.setObjectName("lineEdit")
-        self.comboBox = QtWidgets.QComboBox(self.centralwidget)
-        self.comboBox.setGeometry(QtCore.QRect(20, 20, 81, 25))
-        self.comboBox.setObjectName("comboBox")
-        self.label = QtWidgets.QLabel(self.centralwidget)
-        self.label.setGeometry(QtCore.QRect(160, 20, 111, 20))
-        self.label.setObjectName("label")
-        self.label_2 = QtWidgets.QLabel(self.centralwidget)
-        self.label_2.setGeometry(QtCore.QRect(390, 20, 69, 20))
-        self.label_2.setObjectName("label_2")
-        self.label_3 = QtWidgets.QLabel(self.centralwidget)
-        self.label_3.setGeometry(QtCore.QRect(20, 60, 69, 20))
-        self.label_3.setObjectName("label_3")
+        self.jelo = QtWidgets.QComboBox(self.centralwidget)
+        self.jelo.setGeometry(QtCore.QRect(60, 20, 81, 25))
+        self.jelo.setObjectName("comboBox")
+        self.meso = QtWidgets.QLabel(self.centralwidget)
+        self.meso.setGeometry(QtCore.QRect(190, 22, 111, 20))
+        self.meso.setObjectName("label")
+        self.naziv = QtWidgets.QLabel(self.centralwidget)
+        self.naziv.setGeometry(QtCore.QRect(20, 22, 69, 20))
+        self.naziv.setObjectName("naziv")
+        self.grama = QtWidgets.QLabel(self.centralwidget)
+        self.grama.setGeometry(QtCore.QRect(390, 22, 69, 20))
+        self.grama.setObjectName("label_2")
+        self.Recept = QtWidgets.QLabel(self.centralwidget)
+        self.Recept.setGeometry(QtCore.QRect(20, 60, 69, 20))
+        self.Recept.setObjectName("label_3")
         self.pushButton_izracunaj = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_izracunaj.setGeometry(QtCore.QRect(470, 20, 89, 28))
         self.pushButton_izracunaj.setObjectName("pushButton")
@@ -46,11 +50,15 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Preračun količina sastojaka u odnosu na količinu mesa"))
-        self.label.setText(_translate("MainWindow", "Količina mesa:"))
-        self.label_2.setText(_translate("MainWindow", "grama"))
-        self.label_3.setText(_translate("MainWindow", "Recept:"))
+        self.meso.setText(_translate("MainWindow", "Količina mesa:"))
+        self.grama.setText(_translate("MainWindow", "grama"))
+        self.Recept.setText(_translate("MainWindow", "Recept:"))
+        self.naziv.setText(_translate("MainWindow", "Jelo:"))
         self.pushButton_izracunaj.setText(_translate("MainWindow", "Izracunaj"))
         self.pushButton_izlaz.setText(_translate("MainWindow", "Zatvori"))
+        self.jelo.addItem("Tatarski")
+        self.jelo.addItem("Bolognese")
+        self.jelo.addItem("Hamburger")
 
 def izlaz(self):
     sys.exit()
@@ -58,8 +66,16 @@ def izlaz(self):
 
 # noinspection PyCallByClass
 def ispisi_recept(self):
-    kolicina_mesa=int(ui.lineEdit.text())
-    ui.textBrowser.setText(izracun_ispis(kolicina_mesa))
+    if ui.lineEdit.text():
+        kolicina_mesa = int(ui.lineEdit.text())
+        if ui.jelo.currentText() == "Tatarski":
+            ui.textBrowser.setText(izracun_tatarski(kolicina_mesa))
+        if ui.jelo.currentText() == "Bolognese":
+            ui.textBrowser.setText(izracun_bolognese(kolicina_mesa))
+        if ui.jelo.currentText() == "Hamburger":
+            ui.textBrowser.setText(izracun_hamburger(kolicina_mesa))
+    else:
+        ui.textBrowser.setText("MOLIM UNESITE KOLIČINU MESA!")
 
 if __name__ == "__main__":
     import sys
